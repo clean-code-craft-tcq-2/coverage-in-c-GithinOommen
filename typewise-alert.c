@@ -7,6 +7,8 @@ BreachValue BreachArr[3] = { {0,35},
 				
 
 SendAlert_to (*AlertTargetFunc[])(BreachType breachType) = { sendToController,sendToEmail };
+SendAlert_to (*SendmailAS[])(const char* recepient) = { SendLOW , SendHIGH };
+
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -65,7 +67,7 @@ SendAlert_to sendToController(BreachType breachType) {
 
 SendAlert_to sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  switch(breachType) {
+ /* switch(breachType) {
     case TOO_LOW:
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too low\n");
@@ -77,4 +79,22 @@ SendAlert_to sendToEmail(BreachType breachType) {
     case NORMAL:
       break;
   }
+ */  SendAlert_to MailSendStatus= (*SendmailAS[breachType])(recepient);
+	  return MailSendStatus;
 }
+
+SendAlert_to SendLOW(const char* recepient)
+ {
+         printf("\nLow\n");
+         printf("To: %s\n", recepient);
+         return EMAIL_LOW;
+ }
+ 
+ 
+ 
+SendAlert_to SendHIGH(const char* recepient)
+ {
+         printf("\nHigh\n");
+          printf("To: %s\n", recepient);
+          return EMAIL_HIGH;
+ }
