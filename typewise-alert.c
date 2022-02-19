@@ -1,6 +1,13 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
+BreachValue BreachArr[3] = { {0,35},
+                                {0,45}, 
+				{0,40} };
+				
+
+SendAlert_to (*AlertTargetFunc[])(BreachType breachType) = { sendToController,sendToEmail };
+
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
     return TOO_LOW;
@@ -13,6 +20,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
+            /*
   int lowerLimit = 0;
   int upperLimit = 0;
   switch(coolingType) {
@@ -29,17 +37,16 @@ BreachType classifyTemperatureBreach(
       upperLimit = 40;
       break;
   }
-  return inferBreach(temperatureInC, lowerLimit, upperLimit);
+  */
+  return inferBreach(temperatureInC, BreachArr[coolingType].lowerLimit, BreachArr[coolingType].upperLimit);
 }
 
-void checkAndAlert(
+SendAlert_to checkAndAlert(
     AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
-  BreachType breachType = classifyTemperatureBreach(
-    batteryChar.coolingType, temperatureInC
-  );
+  BreachType breachType = classifyTemperatureBreach( batteryChar.coolingType, temperatureInC);
 
-  switch(alertTarget) {
+ /* switch(alertTarget) {
     case TO_CONTROLLER:
       sendToController(breachType);
       break;
@@ -47,14 +54,16 @@ void checkAndAlert(
       sendToEmail(breachType);
       break;
   }
+ */
+SendAlert_to checkAndAlertWrapper = (*AlertTargetFunc[alertTarget])(breachType);
 }
 
-void sendToController(BreachType breachType) {
+SendAlert_to sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
 }
 
-void sendToEmail(BreachType breachType) {
+SendAlert_to sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   switch(breachType) {
     case TOO_LOW:
