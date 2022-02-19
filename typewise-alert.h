@@ -47,3 +47,7 @@ SendAlert_to checkAndAlert(
 
 SendAlert_to sendToController(BreachType breachType);
 SendAlert_to sendToEmail(BreachType breachType);
+
+SendAlert_to SendLOW(const char* recepient);
+
+SendAlert_to SendHIGH(const char* recepient);
