@@ -7,9 +7,9 @@ typedef enum {
 } CoolingType;
 
 typedef enum {
-  NORMAL,
   TOO_LOW,
-  TOO_HIGH
+  TOO_HIGH,
+  NORMAL,
 } BreachType;
 typedef enum {
 	EMAIL_NORMAL,
