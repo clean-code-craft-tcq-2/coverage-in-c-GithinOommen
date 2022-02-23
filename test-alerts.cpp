@@ -18,6 +18,6 @@ TEST_CASE("classify the Temperature Breach according to LOW limits") {
 TEST_CASE("classify the Temperature Breach according to HIGH limits") {
   REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING,-1) == TOO_HIGH);
 }
-TEST_CASE("classify the Temperature Breach according to LOW limits") {
+TEST_CASE("classify the Temperature Breach according to Normal limits") {
   REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING,-1) == NORMAL);
 }
