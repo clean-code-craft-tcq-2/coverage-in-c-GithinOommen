@@ -23,14 +23,14 @@ TEST_CASE("classify the Temperature Breach according to Normal limits") {
 }
 TEST_CASE("classify the checkAndAlert according to controller PASSIVE_COOLING") {
   	BatteryCharacter batteryChar = {PASSIVE_COOLING,"BOSCH"};
-  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == TO_CONTROLLER);
-}/*
+  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == CONTROLLER);
+}
 TEST_CASE("classify the checkAndAlert according to controller HI_ACTIVE_COOLINGs") {
   	BatteryCharacter batteryChar = {HI_ACTIVE_COOLING,"BOSCH"};
-  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == TO_CONTROLLER);
+  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == CONTROLLER);
 }
 TEST_CASE("classify the checkAndAlert according to controller MED_ACTIVE_COOLING") {
   	BatteryCharacter batteryChar = {MED_ACTIVE_COOLING,"BOSCH"};
-  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == TO_CONTROLLER);
+  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == CONTROLLER);
 }
-*/
+
