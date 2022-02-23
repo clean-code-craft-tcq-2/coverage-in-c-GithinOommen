@@ -31,11 +31,11 @@ TEST_CASE("classify the checkAndAlert  to controller HI_ACTIVE_COOLINGs") {
 }
 TEST_CASE("classify the checkAndAlert  to controller MED_ACTIVE_COOLING") {
   	BatteryCharacter batteryChar = {MED_ACTIVE_COOLING,"BOSCH"};
-  REQUIRE(checkAndAlert(TO_EMAIL,batteryChar,30 ) == CONTROLLER);
+  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,30 ) == CONTROLLER);
 }
 TEST_CASE("classify the checkAndAlert to MAIL PASSIVE_COOLING") {
   	BatteryCharacter batteryChar = {PASSIVE_COOLING,"BOSCH"};
-  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,-1 ) == EMAIL_LOW);
-  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar,50 ) == EMAIL_HIGH);
+  REQUIRE(checkAndAlert(TO_EMAIL,batteryChar,-1 ) == EMAIL_LOW);
+  REQUIRE(checkAndAlert(TO_EMAIL,batteryChar,50 ) == EMAIL_HIGH);
 }
 
