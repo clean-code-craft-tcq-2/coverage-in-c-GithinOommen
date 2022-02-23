@@ -38,7 +38,7 @@ SendAlert_to checkAndAlertWrapper = (*AlertTargetFunc[alertTarget])(breachType);
 SendAlert_to sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
-	return 1;
+	return CONTROLLER;
 }
 
 SendAlert_to sendToEmail(BreachType breachType) {
